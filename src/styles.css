@@ -1,1 +1,460 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilos generales */
+body, main, header, footer {
+    font-family: 'Raleway', sans-serif;
+    width: 100%;
+}
+
+/* Estilos nav */
+header {
+    width: 100%;
+    background-color: #ffb5ff;
+}
+nav {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+/* Estilos del banner */
+#banner {
+    width: 90%;
+    height: 90vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+}
+.foto {
+    width: 30%;
+}
+.foto img {
+    width: 80%;
+    border-radius: 50%;
+    box-shadow: black;
+}
+.contenedorTextoBanner {
+    width: 70%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2em;
+}
+.tituloPrincipal h1 {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 4em;
+    font-weight: bold;
+}
+.bajada h2 {
+    font-size: 2em;
+    font-style: italic;
+}
+.vinculos {
+    width: 100%;
+}
+.vinculosBanner {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+.vinculosBanner li:hover {
+    color: blue;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+/* Estilo sobre mi  */
+#about {
+    width: 100%;
+    height: 50vh;
+    background-color: #aca9a9;
+}
+.sobreMi {
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 2em;
+}
+.sobreMi h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+.textoAbout {
+    width: 90%;
+    height: 50vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    font-size: 1em;
+    padding-top: 2em;
+}
+.textoAbout p {
+    margin: 0 1em;
+}
+.reloded {
+    font-weight: bold;
+    font-size: 1.3em;
+    font-style: italic;
+    text-align: end;
+    padding-bottom: 1em;
+}
+
+/* Estilo skills */
+#skills {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.containerSkillsIt, .containerSkillsLive {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.containerSkillsIt h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+.containerSkillsLive h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+.skillsIt, .skillsLive {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.cardSkill {
+    width: 150px;
+    height: 150px;
+    background-color: #bbbbbb;
+    box-shadow: 5px 5px 5px black;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    justify-content: flex-end;
+}
+.cardSkill p {
+    font-weight: bold;
+    margin-top: 0.5em;
+    font-size: 1.5em;
+}
+.cardSkillLive {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: 4px solid #bbbbbb;
+    box-shadow: 5px 5px 5px black;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    justify-content: flex-end;
+}
+.cardSkillLive p {
+    font-weight: bold;
+    margin-top: 0.5em;
+    font-size: 1em;
+}
+
+/* Estilo Formación */
+#formacion {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #bbbbbb;
+}
+.containerFormacion {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#formacion h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+.cardFormacion {
+    width: 200px;
+    height: 150px;
+    background-color: white;
+    border: 4px solid #bbbbbb;
+    box-shadow: 5px 5px 5px black;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    justify-content: space-between;
+    align-items: center;
+}
+.cardFormacion p {
+    font-weight: bold;
+    margin-top: 0.5em;
+    font-size: 1em;
+} 
+.formacionDelante {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.formacionDetras {
+    backface-visibility: hidden;
+}
+.cardFormacion:hover {
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    transition: all 0.7s linear;
+}
+.formacionDelante {
+    backface-visibility: hidden;
+}
+  
+.formacionDetras {
+    transform: rotateY(180deg);
+    visibility: visible;
+    position: fixed;
+    padding: 1em;
+    transition: 1s;
+}
+.formacionDetras .logro {
+    color: red;
+}
+
+
+/* Estilo Proyectos */
+#proyectos {
+    width: 100%;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2em;
+}
+#proyectos h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 1em;
+    text-align: center;
+}
+.cardProject {
+    width: 80%;
+    margin: 0 auto;
+    align-items: flex-start;
+    display: flex;
+    padding: 4em 0;
+    align-items: center;
+}
+.cardProject .img {
+    width: 50%;
+    margin-right: 2em;
+}
+.cardProject .img img:hover {
+    width: 110%;
+    transition: 500ms;
+}
+.cardProject .descripcion {
+    display: flex;
+    flex-direction: column;
+}
+.cardProject h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+.cardProject .botones {
+    margin-top: 1em;
+}
+.cardProject .botones .github {
+    border: none;
+    background-color: blue;
+    width: 12em;
+    height: 3em;
+    margin-right: 1em;    
+}
+.cardProject .botones .github a {
+    text-decoration: none;
+    color: white;
+}
+.cardProject .botones .github:hover {
+    background-color: #bbbbbb;
+    font-weight: bold;
+}
+.cardProject .botones .demo {
+    border: none;
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+    width: 12em;
+    height: 3em;
+    margin-right: 1em;    
+}
+.cardProject .botones .demo a {
+    text-decoration: none;
+    color: blue;
+}
+.cardProject .botones .demo:hover {
+    background-color: #bbbbbb;
+    color: black;
+    font-weight: bold;
+}
+.cardProjectIzq {
+    width: 80%;
+    margin: 0 auto;
+    align-items: flex-end;
+    display: flex;
+    padding: 2em;
+    align-items: center;
+}
+.cardProjectIzq .img {
+    width: 50%;
+    margin-left: 2em;
+}
+.cardProjectIzq .img img:hover {
+    width: 110%;
+    transition: 500ms;
+}
+.cardProjectIzq .descripcion {
+    display: flex;
+    flex-direction: column;
+}
+.cardProjectIzq h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+.cardProjectIzq .botones {
+    margin-top: 1em;
+}
+.cardProjectIzq .botones .github {
+    border: none;
+    background-color: blue;
+    color: white;
+    width: 12em;
+    height: 3em;
+    margin-right: 1em;
+    text-decoration: none;    
+}
+.cardProjectIzq .botones .github a {
+    text-decoration: none;
+    color: white;
+}
+.cardProjectIzq .botones .github:hover {
+    background-color: #bbbbbb;
+    color: black;
+    font-weight: bold;
+}
+.cardProjectIzq .botones .demo {
+    border: none;
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+    width: 12em;
+    height: 3em;
+    margin-right: 1em;    
+}
+.cardProjectIzq .botones .demo a {
+    text-decoration: none;
+    color: blue;
+}
+.cardProjectIzq .botones .demo:hover {
+    background-color: #bbbbbb;
+    color: black;
+    font-weight: bold;
+}
+/* Estilo Formulario Contacto */
+#contacto {
+    width: 100%;
+    height: auto;
+    background-color: #bbbbbb;
+    display: flex;
+}
+.imgContacto {
+    width: 60%;
+    margin: auto;
+}
+#form {
+    width: 40%;
+    margin: 2em;
+}
+.encabezado h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+.encabezado p {
+    font-size: 1em;
+    font-style: italic;
+}
+#datos {
+    margin-top: 1em;
+    font-size: 0.8em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.ingresoDato {
+    margin: 0.5em 0;
+    width: 80%;
+    height: 2.5em;
+    align-items: flex-start;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px 5px;
+}
+#enviar {
+    width: 12em;
+    height: 3em;
+    margin: 0 auto;
+    margin-top: 2em;
+    background-color: blue;
+    color: white;
+    border: none;
+    align-items: center;
+}
+#enviar:hover {
+    background-color: white;
+    color: blue;
+    font-weight: bold;
+    border: 3px solid blue;
+    transition: 300ms;
+}
+
+/* Estilo Footer  */
+footer {
+    width: 100%;
+    height: 10vh;
+    text-align: center;
+    padding-top: 2em;
+    background-color: black;
+    color: white;
+}
+
+/* Estilo Pagina CV */
+.bodyCv {
+    height: 190vh;
+}
