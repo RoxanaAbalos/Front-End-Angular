@@ -13,9 +13,11 @@ export class Perfil {
     foto: string;
     acerca: string;
     banner: string;
-    experiencias: Education[] = [];
-    formaciones: Project[] = [];
-    competencias: Skill[] = [];
-    proyectos: Worked[] = [];
+    ciudad: string;
+    titulo: string;
+    workeds: Worked[] = [];
+    educations: Education[] = [];
+    skills: Skill[] = [];
+    projects: Project[] = [];
 
 }

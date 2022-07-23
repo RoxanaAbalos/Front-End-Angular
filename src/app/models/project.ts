@@ -4,4 +4,5 @@ export class Project {
     descripcion: string;
     link: string;
     imagen: string;
+    git:string;
 }

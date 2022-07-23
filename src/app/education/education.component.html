@@ -1,0 +1,20 @@
+<section id="formacion">
+    <h1>Formación</h1>
+    <div class="containerFormacion">
+            <div *ngFor="let data of formacionData.educations"class="cardFormacion">
+                <div class="formacionDelante">
+                    <img src="../../assets/images/123.png" alt={{data.instituto}} width="130px" height="60px">
+                    <p>{{data.titulo}}</p>
+                </div>
+                <div class="formacionDetras">
+                    <p>{{data.instituto}}</p>
+                    <p class="logro"></p>
+                    <p>Finalizado - {{data.fechaInicio}}-{{data.fechaFin}}</p>
+                    <br>
+                    <p><a href={{data.link}} target="_blank">Link al Programa</a></p>
+                </div>
+            </div>
+
+
+    </div>
+</section>

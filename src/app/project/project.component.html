@@ -1,0 +1,39 @@
+<section id="proyectos">
+    <h1>Proyectos</h1>
+
+    <div *ngFor="let data of projectsData.projects">
+        <div *ngIf="esPar(data.id)" class="cardProject">
+            <div class="img">
+                <img src={{data.imagen}}
+                    alt={{data.titulo} width="100%">
+            </div>
+            <div class="descripcion">
+                <h2>{{data.titulo}}</h2>
+                <p>{{data.descripcion}}</p>
+                <div class="botones">
+                    <button class="github"><a href={{data.git}}
+                            target="_blank">Repositorio Github</a></button>
+                    <button class="demo"><a href={{data.link}} target="_blank">Ver
+                            demo</a></button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!esPar(data.id)" class="cardProjectIzq">
+            <div class="descripcion">
+                <h2>{{data.titulo}}</h2>
+                <p>{{data.descripcion}}</p>
+                <div class="botones">
+                    <button class="github"><a href={{data.git}}
+                            target="_blank">Repositorio Github</a></button>
+                    <button class="demo"><a href={{data.link}} target="_blank">Ver
+                            demo</a></button>
+                </div>
+            </div>
+            <div class="img">
+                <img src={{data.imagen}}
+                    alt={{data.titulo}} width="100%">
+            </div>
+        </div>
+    </div>
+</section>

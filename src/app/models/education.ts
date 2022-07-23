@@ -6,4 +6,6 @@ export class Education {
     fechaFin: string;
     descripcion: string;
     localidad: string;
+    link:string;
+    imagen:string;
 }

@@ -1,0 +1,29 @@
+<section id="banner">
+    
+    <div class="foto">
+        <img src="../../assets/images/IMG-20190121-WA0017.jpg" alt="Foto Cesar Varettoni">
+    </div>
+    <div class="contenedorTextoBanner">
+        
+        <div class="tituloPrincipal">
+            <div class="float-right btn-group btn-group-sm" >
+                <a (click)="onOpenModal()" class="btn btn-warning tooltips" style="color:black;"
+                    data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+            </div>
+        
+            <h1> {{perfilData.apellido}} {{perfilData.nombre}}</h1>
+            <h1>{{perfilData.titulo}}</h1>
+        </div>
+        <div class="bajada">
+            <h2>
+                {{perfilData.acerca}}
+            </h2>
+            
+            <br />
+            <i class="fas fa-envelope icons"></i>&nbsp;{{perfilData.email}} <br />
+            <i class="fas fa-map-marker-alt icons"></i>&nbsp;{{perfilData.ciudad}}<br />
+            <i class="fa-solid fa-phone icons"></i>&nbsp;{{perfilData.telefono}} <br />
+
+        </div>
+    </div>
+</section>
