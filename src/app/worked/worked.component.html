@@ -1,1 +1,14 @@
-<p>worked works!</p>
+<section id="proyectos">
+    <h1>Experiencia</h1>
+    <div class="cardProject" *ngFor="let data of perfilData.workeds">
+        <div class="img">
+            <img src="https://www.trecebits.com/wp-content/uploads/2017/07/empleo-trabajo.jpg" alt={{data.puesto}} width="100%">
+        </div>
+        <div class="descripcion">
+            <h2>{{data.puesto}} - {{data.empleador}}</h2>
+            <p>{{data.descripcion}}</p>
+            <p>{{data.localidad}}</p>
+            <p>Fecha: {{data.fechaInicio}} - {{data.fechaFin}}</p>
+        </div>
+    </div>
+</section>

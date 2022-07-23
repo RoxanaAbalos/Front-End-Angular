@@ -6,4 +6,5 @@ export class Worked {
     descripcion: string;
     fechaInicio: string;
     fechaFin: string
+    imagen:string;
 }
