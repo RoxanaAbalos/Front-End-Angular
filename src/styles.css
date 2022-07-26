@@ -18,8 +18,6 @@ nav {
 }
 
 
-
-
 /* Estilos del banner */
 #banner {
     width: 90%;
@@ -146,8 +144,8 @@ nav {
     font-weight: bold;
 }
 .cardFormacion {
-    width: 200px;
-    height: 150px;
+    width: 250px;
+    height: 210px;
     background-color: white;
     border: 4px solid #bbbbbb;
     box-shadow: 5px 5px 5px black;
@@ -333,75 +331,6 @@ nav {
     color: black;
     font-weight: bold;
 }
-/* Estilo Formulario Contacto */
-#contacto {
-    width: 100%;
-    height: auto;
-    background-color: #bbbbbb;
-    display: flex;
-}
-.imgContacto {
-    width: 60%;
-    margin: auto;
-}
-#form {
-    width: 40%;
-    margin: 2em;
-}
-.encabezado h1 {
-    font-size: 2em;
-    font-weight: bold;
-    margin: 0.5em 0;
-}
-.encabezado p {
-    font-size: 1em;
-    font-style: italic;
-}
-#datos {
-    margin-top: 1em;
-    font-size: 0.8em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.ingresoDato {
-    margin: 0.5em 0;
-    width: 80%;
-    height: 2.5em;
-    align-items: flex-start;
-    font-size: 1em;
-    border: none;
-    border-radius: 5px 5px;
-}
-#enviar {
-    width: 12em;
-    height: 3em;
-    margin: 0 auto;
-    margin-top: 2em;
-    background-color: blue;
-    color: white;
-    border: none;
-    align-items: center;
-}
-#enviar:hover {
-    background-color: white;
-    color: blue;
-    font-weight: bold;
-    border: 3px solid blue;
-    transition: 300ms;
-}
 
-/* Estilo Footer  */
-footer {
-    width: 100%;
-    height: 10vh;
-    text-align: center;
-    padding-top: 2em;
-    background-color: black;
-    color: white;
-}
 
-/* Estilo Pagina CV */
-.bodyCv {
-    height: 190vh;
-}
+

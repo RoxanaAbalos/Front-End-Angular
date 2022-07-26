@@ -1,7 +1,13 @@
 <section id="formacion">
     <h1>Formación</h1>
     <div class="containerFormacion">
-            <div *ngFor="let data of formacionData.educations"class="cardFormacion">
+            <div *ngFor="let data of formacionData.educations" class="cardFormacion">
+                <div class="float-right btn-group btn-group-sm" style="color:black;">
+                    <a (click)="onOpenModal()" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip"
+                        data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                    <a (click)="onDeleteSkill()" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip"
+                        data-original-title="Delete"><i class="fa fa-times"></i></a>
+                </div>
                 <div class="formacionDelante">
                     <img src="../../assets/images/123.png" alt={{data.instituto}} width="130px" height="60px">
                     <p>{{data.titulo}}</p>

@@ -3,16 +3,20 @@
 
     <div *ngFor="let data of projectsData.projects">
         <div *ngIf="esPar(data.id)" class="cardProject">
+            <div class="float-right btn-group btn-group-sm" style="color:black;">
+                <a (click)="onOpenModal()" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip"
+                    data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                <a (click)="onDeleteSkill()" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip"
+                    data-original-title="Delete"><i class="fa fa-times"></i></a>
+            </div>
             <div class="img">
-                <img src={{data.imagen}}
-                    alt={{data.titulo} width="100%">
+                <img src={{data.imagen}} alt={{data.titulo} width="100%">
             </div>
             <div class="descripcion">
                 <h2>{{data.titulo}}</h2>
                 <p>{{data.descripcion}}</p>
                 <div class="botones">
-                    <button class="github"><a href={{data.git}}
-                            target="_blank">Repositorio Github</a></button>
+                    <button class="github"><a href={{data.git}} target="_blank">Repositorio Github</a></button>
                     <button class="demo"><a href={{data.link}} target="_blank">Ver
                             demo</a></button>
                 </div>
@@ -20,19 +24,23 @@
         </div>
 
         <div *ngIf="!esPar(data.id)" class="cardProjectIzq">
+            <div class="float-right btn-group btn-group-sm" style="color:black;">
+                <a (click)="onOpenModal()" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip"
+                    data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                <a (click)="onDeleteSkill()" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip"
+                    data-original-title="Delete"><i class="fa fa-times"></i></a>
+            </div>
             <div class="descripcion">
                 <h2>{{data.titulo}}</h2>
                 <p>{{data.descripcion}}</p>
                 <div class="botones">
-                    <button class="github"><a href={{data.git}}
-                            target="_blank">Repositorio Github</a></button>
+                    <button class="github"><a href={{data.git}} target="_blank">Repositorio Github</a></button>
                     <button class="demo"><a href={{data.link}} target="_blank">Ver
                             demo</a></button>
                 </div>
             </div>
             <div class="img">
-                <img src={{data.imagen}}
-                    alt={{data.titulo}} width="100%">
+                <img src={{data.imagen}} alt={{data.titulo}} width="100%">
             </div>
         </div>
     </div>

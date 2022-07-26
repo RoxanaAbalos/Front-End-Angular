@@ -1,6 +1,13 @@
 <section id="proyectos">
     <h1>Experiencia</h1>
+    <button  (click)="onOpenModal()" class="btn btn-light">Nuevo Trabajo</button>
     <div class="cardProject" *ngFor="let data of perfilData.workeds">
+        <div class="float-right btn-group btn-group-sm" style="color:black;">
+            <a (click)="onOpenModal()" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip"
+                data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+            <a (click)="onDeleteSkill()" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip"
+                data-original-title="Delete"><i class="fa fa-times"></i></a>
+        </div>
         <div class="img">
             <img src="https://www.trecebits.com/wp-content/uploads/2017/07/empleo-trabajo.jpg" alt={{data.puesto}} width="100%">
         </div>

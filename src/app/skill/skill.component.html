@@ -1,8 +1,17 @@
 <section id="skills">
-    <div class="containerSkillsIt">
+    <div class="containerSkillsIt" id="main-container-skill">
         <h1>Skills IT</h1>
+        <button (click)="onOpenModal('add')" class="btn btn-light">Nueva
+            Habilidad</button>
         <div class="skillsIt">
             <div *ngFor="let data of perfilData.skills">
+                <div  class="float-right btn-group btn-group-sm"
+                    style="color:black;">
+                    <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
+                        data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                    <a (click)="onDeleteSkill(data)" class="btn btn-danger tooltips" data-placement="top"
+                        data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                </div>
                 <circle-progress
                  [percent]="data.porciento"
                  [radius]="70" [outerStrokeWidth]="6"
@@ -21,3 +30,127 @@
         </div>
     </div>
 </section>
+
+<!-- Add Skill Modal -->
+<div class="modal fade" id="addSkillModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModalLabel"
+    aria-hidden="true" style="color: black;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addSkillModalLabel">Anadir Habilidad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form #addForm="ngForm" (ngSubmit)="onAddSkill(addForm)">
+
+                    <div class="form-group">
+                        <label for="habilidad">Habilidad</label>
+                        <input type="text" ngModel name="habilidad" class="form-control" id="habilidad"
+                            placeholder="Habilidad" required minlength="5" #habilidad="ngModel">
+                        <div class="alert alert-danger"
+                            *ngIf="habilidad.invalid && (habilidad.dirty || habilidad.touched)">
+                            <div *ngIf="habilidad.errors">
+                                Skill es requerido debe ser mayor a 5 caracteres !
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="nivel">Nivel</label>
+                        <!-- <input type="text" ngModel name="nivel" class="form-control" id="nivel" placeholder="Nivel"
+                            required>-->
+                        <select  id="nivel" ngModel name="nivel" class="form-control" id="nivel">
+                            <option type="text" *ngFor="let item of lista" [ngValue]="item" >{{item}}</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="number">Porciento %</label>
+                        <input type="number" ngModel name="porciento" class="form-control" id="porciento"
+                            placeholder="Porciento" required min="0" max="100" #porciento="ngModel" >
+                        <div class="alert alert-danger"
+                            *ngIf="porciento.invalid && (porciento.dirty || porciento.touched)">
+                            <div *ngIf="porciento.errors">
+                                El titulo es requerido debe ser un numero entre 0 y 100 !
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="add-skill-form" class="btn btn-secondary"
+                            data-dismiss="modal">Cerrar</button>
+                        <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Edit Skill Modal -->
+<div class="modal fade" id="editSkillModal" tabindex="-1" role="dialog" aria-labelledby="editSkillModalLabel"
+    aria-hidden="true" style="color: black;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editSkillModalLabel">Editar Habilidad Seleccionada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form #editForm="ngForm">
+                    <div class="form-group">
+                        <input type="hidden" ngModel="{{skillEdit?.id}}" name="id" class="form-control" id="id"
+                            placeholder="Id">
+
+                        <label for="habilidad">Habilidad</label>
+                        <input type="text" ngModel="{{skillEdit?.habilidad}}" name="habilidad" class="form-control"
+                            id="habilidad" placeholder="Habilidad" required minlength="5" #habilidad="ngModel">
+                            <div class="alert alert-danger"
+                                *ngIf="habilidad.invalid && (habilidad.dirty || habilidad.touched)">
+                                <div *ngIf="habilidad.errors">
+                                    Skill es requerido debe ser mayor a 5 caracteres !
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nivel">Nivel</label>
+                 
+                            <select  id="nivel" ngModel="{{skillEdit?.nivel}}" name="nivel" class="form-control" id="nivel">
+                                <option type="text" *ngFor="let item of lista" [ngValue]="item" >{{item}}</option>
+                            </select>
+    
+                    </div>
+
+                    <div class="form-group">
+                        <label for="number">Porciento</label>
+                        <input type="number" ngModel="{{skillEdit?.porciento}}" name="porciento" class="form-control"
+                            id="porciento" placeholder="porciento" required min="0" max="100" #porciento="ngModel" >
+                            <div class="alert alert-danger"
+                                *ngIf="porciento.invalid && (porciento.dirty || porciento.touched)">
+                                <div *ngIf="porciento.errors">
+                                    El titulo es requerido debe ser un numero entre 0 y 100 !
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                        <button (click)="onUpdateSkill(editForm.value)" data-dismiss="modal"
+                            class="btn btn-primary">Editar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

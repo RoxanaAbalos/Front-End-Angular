@@ -20,7 +20,15 @@ export class ProjectComponent implements OnInit {
       projectsData => this.projectsData = projectsData
     );
   }
-  public esPar(numero) {
+
+  onOpenModal(){
+
+  }
+  onDeleteSkill(){
+
+  }
+
+  esPar(numero) {
     return (numero % 2) == 0;
   }
 

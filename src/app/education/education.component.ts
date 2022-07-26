@@ -22,5 +22,11 @@ export class EducationComponent implements OnInit {
     );
     
   }
+  onOpenModal(){
+
+  }
+  onDeleteSkill(){
+    
+  }
 
 }

@@ -19,5 +19,11 @@ export class WorkedComponent implements OnInit {
       perfilData => this.perfilData = perfilData
     );
   }
+  
+  onOpenModal(){
 
+  }
+  onDeleteSkill(){
+
+  }
 }
