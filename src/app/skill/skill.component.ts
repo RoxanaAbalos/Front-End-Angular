@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+
 import Swal from 'sweetalert2';
 import { Perfil } from '../models/perfil';
 import { Skill } from '../models/skill';
@@ -49,7 +50,6 @@ export class SkillComponent implements OnInit {
     this.perfilData.skills.push(<Skill>addForm.value);
     this.perfilService.update(this.perfilData).subscribe(
       json => {
-        console.log(json);
         Swal.fire(`${json.competencia.habilidad}`, `${json.mensaje} `, 'success');
         this.getData();
         addForm.reset();
@@ -58,16 +58,16 @@ export class SkillComponent implements OnInit {
   }
   onUpdateSkill(skill: Skill): void {
     this.skillEdit = skill;
-    this.perfilData.skills.splice(this.perfilData.skills.indexOf(skill),1,skill);
-    console.log(this.perfilData);
+    this.perfilData.skills.splice(this.perfilData.skills.findIndex(id=>id.id == skill.id),1,skill);
     this.perfilService.update(this.perfilData).subscribe(
       json => {
-        console.log(json);
         Swal.fire(`${json.competencia.habilidad}`, `${json.mensaje} `, 'success');
         this.getData();
       }
     );
   }
+
+
   onDeleteSkill(data: Skill): void {
     Swal.fire({
       title: 'Estas seguro de eliminar la Habilidad',
