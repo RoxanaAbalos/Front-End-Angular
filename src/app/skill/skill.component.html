@@ -1,32 +1,27 @@
 <section id="skills">
-    <div class="containerSkillsIt" id="main-container-skill">
-        <h1>Skills IT</h1>
-        <button (click)="onOpenModal('add')" class="btn btn-light">Nueva
-            Habilidad</button>
-        <div class="skillsIt">
-            <div *ngFor="let data of perfilData.skills">
-                <div  class="float-right btn-group btn-group-sm"
-                    style="color:black;">
-                    <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
-                        data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                    <a (click)="onDeleteSkill(data)" class="btn btn-danger tooltips" data-placement="top"
-                        data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                </div>
-                <circle-progress
-                 [percent]="data.porciento"
-                 [radius]="70" [outerStrokeWidth]="6"
-                 [innerStrokeWidth]="2"
-                 [backgroundColor]="'#ff9c97'"
-                 [outerStrokeColor]="'#eee9e5'"
-                 [innerStrokeColor]="'transparent'"
-                 [animation]="true"
-                 [animationDuration]="300" 
-                 [title]="data.habilidad" 
-                 [subtitle]="data.nivel" 
-                 [titleColor]="'#02031a'"
-                 [subtitleColor]="'#02031a'"></circle-progress>
-            </div>
+  
+    <div id="main-container-skill">
 
+        <div class="containerSkillsIt">
+            <h1>Skills IT</h1>
+            <button (click)="onOpenModal('add')" class="btn btn-success" style="width: 150px;">Nueva
+                Habilidad</button>
+            <div class="skillsIt">
+                <div *ngFor="let data of perfilData.skills">
+                    <div class="float-right btn-group btn-group-sm" style="color:black;">
+                        <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
+                            data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a (click)="onDeleteSkill(data)" class="btn btn-danger tooltips" data-placement="top"
+                            data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    </div>
+                    <circle-progress [percent]="data.porciento" [radius]="70" [outerStrokeWidth]="6"
+                        [innerStrokeWidth]="2" [backgroundColor]="'#ff9c97'" [outerStrokeColor]="'#eee9e5'"
+                        [innerStrokeColor]="'transparent'" [animation]="true" [animationDuration]="300"
+                        [title]="data.habilidad" [subtitle]="data.nivel" [titleColor]="'#02031a'"
+                        [subtitleColor]="'#02031a'"></circle-progress>
+                </div>
+
+            </div>
         </div>
     </div>
 </section>
@@ -63,8 +58,8 @@
                         <label for="nivel">Nivel</label>
                         <!-- <input type="text" ngModel name="nivel" class="form-control" id="nivel" placeholder="Nivel"
                             required>-->
-                        <select  id="nivel" ngModel name="nivel" class="form-control" id="nivel">
-                            <option type="text" *ngFor="let item of lista" [ngValue]="item" >{{item}}</option>
+                        <select id="nivel" ngModel name="nivel" class="form-control" id="nivel">
+                            <option type="text" *ngFor="let item of lista" [ngValue]="item">{{item}}</option>
                         </select>
 
                     </div>
@@ -73,7 +68,7 @@
                     <div class="form-group">
                         <label for="number">Porciento %</label>
                         <input type="number" ngModel name="porciento" class="form-control" id="porciento"
-                            placeholder="Porciento" required min="0" max="100" #porciento="ngModel" >
+                            placeholder="Porciento" required min="0" max="100" #porciento="ngModel">
                         <div class="alert alert-danger"
                             *ngIf="porciento.invalid && (porciento.dirty || porciento.touched)">
                             <div *ngIf="porciento.errors">
@@ -116,33 +111,33 @@
                         <label for="habilidad">Habilidad</label>
                         <input type="text" ngModel="{{skillEdit?.habilidad}}" name="habilidad" class="form-control"
                             id="habilidad" placeholder="Habilidad" required minlength="5" #habilidad="ngModel">
-                            <div class="alert alert-danger"
-                                *ngIf="habilidad.invalid && (habilidad.dirty || habilidad.touched)">
-                                <div *ngIf="habilidad.errors">
-                                    Skill es requerido debe ser mayor a 5 caracteres !
-                                </div>
+                        <div class="alert alert-danger"
+                            *ngIf="habilidad.invalid && (habilidad.dirty || habilidad.touched)">
+                            <div *ngIf="habilidad.errors">
+                                Skill es requerido debe ser mayor a 5 caracteres !
                             </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="nivel">Nivel</label>
-                 
-                            <select  id="nivel" ngModel="{{skillEdit?.nivel}}" name="nivel" class="form-control" id="nivel">
-                                <option type="text" *ngFor="let item of lista" [ngValue]="item" >{{item}}</option>
-                            </select>
-    
+
+                        <select id="nivel" ngModel="{{skillEdit?.nivel}}" name="nivel" class="form-control" id="nivel">
+                            <option type="text" *ngFor="let item of lista" [ngValue]="item">{{item}}</option>
+                        </select>
+
                     </div>
 
                     <div class="form-group">
                         <label for="number">Porciento</label>
                         <input type="number" ngModel="{{skillEdit?.porciento}}" name="porciento" class="form-control"
-                            id="porciento" placeholder="porciento" required min="0" max="100" #porciento="ngModel" >
-                            <div class="alert alert-danger"
-                                *ngIf="porciento.invalid && (porciento.dirty || porciento.touched)">
-                                <div *ngIf="porciento.errors">
-                                    El titulo es requerido debe ser un numero entre 0 y 100 !
-                                </div>
+                            id="porciento" placeholder="porciento" required min="0" max="100" #porciento="ngModel">
+                        <div class="alert alert-danger"
+                            *ngIf="porciento.invalid && (porciento.dirty || porciento.touched)">
+                            <div *ngIf="porciento.errors">
+                                El titulo es requerido debe ser un numero entre 0 y 100 !
                             </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>

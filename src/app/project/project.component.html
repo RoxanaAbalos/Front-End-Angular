@@ -1,47 +1,195 @@
 <section id="proyectos">
     <h1>Proyectos</h1>
+    <div>
+        <button (click)="onOpenModal('add')" class="btn btn-success">NuevoProyecto</button>
+        <div *ngFor="let data of perfilData.projects" id="main-container-proyect">
 
-    <div *ngFor="let data of projectsData.projects">
-        <div *ngIf="esPar(data.id)" class="cardProject">
-            <div class="float-right btn-group btn-group-sm" style="color:black;">
-                <a (click)="onOpenModal()" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip"
-                    data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                <a (click)="onDeleteSkill()" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip"
-                    data-original-title="Delete"><i class="fa fa-times"></i></a>
-            </div>
-            <div class="img">
-                <img src={{data.imagen}} alt={{data.titulo} width="100%">
-            </div>
-            <div class="descripcion">
-                <h2>{{data.titulo}}</h2>
-                <p>{{data.descripcion}}</p>
-                <div class="botones">
-                    <button class="github"><a href={{data.git}} target="_blank">Repositorio Github</a></button>
-                    <button class="demo"><a href={{data.link}} target="_blank">Ver
-                            demo</a></button>
+            <div *ngIf="esPar(data.id)" class="cardProject">
+                <div class="float-right btn-group btn-group-sm" style="color:black;">
+                    <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
+                        data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                    <a (click)="onDeleteProyect(data)" class="btn btn-danger tooltips" data-placement="top"
+                        data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="img">
+                    <img src={{data.imagen}} alt={{data.titulo} width="100%">
+                </div>
+                <div class="descripcion">
+                    <h2>{{data.titulo}}</h2>
+                    <p>{{data.descripcion}}</p>
+                    <div class="botones">
+                        <button class="github"><a href={{data.git}} target="_blank">Repositorio Github</a></button>
+                        <button class="demo"><a href={{data.link}} target="_blank">Ver
+                                demo</a></button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div *ngIf="!esPar(data.id)" class="cardProjectIzq">
-            <div class="float-right btn-group btn-group-sm" style="color:black;">
-                <a (click)="onOpenModal()" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip"
-                    data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                <a (click)="onDeleteSkill()" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip"
-                    data-original-title="Delete"><i class="fa fa-times"></i></a>
-            </div>
-            <div class="descripcion">
-                <h2>{{data.titulo}}</h2>
-                <p>{{data.descripcion}}</p>
-                <div class="botones">
-                    <button class="github"><a href={{data.git}} target="_blank">Repositorio Github</a></button>
-                    <button class="demo"><a href={{data.link}} target="_blank">Ver
-                            demo</a></button>
+            <div *ngIf="!esPar(data.id)" class="cardProjectIzq">
+                <div class="float-right btn-group btn-group-sm" style="color:black;">
+                    <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
+                        data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                    <a (click)="onDeleteProyect(data)" class="btn btn-danger tooltips" data-placement="top"
+                        data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
                 </div>
-            </div>
-            <div class="img">
-                <img src={{data.imagen}} alt={{data.titulo}} width="100%">
+                <div class="descripcion">
+                    <h2>{{data.titulo}}</h2>
+                    <p>{{data.descripcion}}</p>
+                    <div class="botones">
+                        <button class="github"><a href={{data.git}} target="_blank">Repositorio Github</a></button>
+                        <button class="demo"><a href={{data.link}} target="_blank">Ver
+                                demo</a></button>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src={{data.imagen}} alt={{data.titulo}} width="100%">
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Add Proyect Modal -->
+<div class="modal fade" id="addProyectModal" tabindex="-1" role="dialog" aria-labelledby="addProyectModalLabel"
+    aria-hidden="true" style="color: black;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProyectModalLabel">Anadir Proyecto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form #addForm="ngForm" (ngSubmit)="onAddProyect(addForm) ">
+
+                    <div class="form-group">
+                        <label for="titulo">Titulo :</label>
+                        <input type="text" ngModel name="titulo" class="form-control" id="titulo" placeholder="Titulo"
+                            required minlength="5" #titulo="ngModel">
+                        <div class="alert alert-danger" *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)">
+                            <div *ngIf="titulo.errors">
+                                El titulo es requerido debe ser mayor a 5 caracteres !
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="url">Link :</label>
+                        <input type="url" ngModel name="link" class="form-control" id="link" placeholder="Link" required
+                            #link="ngModel" pattern={{reg}}>
+                        <div class="alert alert-danger" *ngIf="link.invalid && (link.dirty || link.touched)">
+                            <div *ngIf="link.errors">
+                                El link debe ser en formato : "http://www.google.com" y requerido!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imagen">Imagen :</label>
+                        <input type="url" ngModel name="imagen" class="form-control" id="imagen" placeholder="imagen"
+                            required #imagen="ngModel" pattern={{reg}}>
+                        <div class="alert alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
+                            <div *ngIf="imagen.errors">
+                                El link debe ser en formato : "http://www.google.com" y requerido!
+                            </div>
+                        </div>
+                    </div>
+          
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion :</label>
+                        <textarea type="text" ngModel name="descripcion" class="form-control" id="descripcion"
+                            placeholder="Descripcion" required minlength="10" #descripcion="ngModel"></textarea>
+                        <div class="alert alert-danger"
+                            *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                            <div *ngIf="descripcion.errors">
+                                Descripcion es requerido debe ser mayor a 10 caracteres !
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="add-proyect-form" class="btn btn-secondary"
+                            data-dismiss="modal">Close</button>
+                        <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Edit Proyect Modal -->
+<div class="modal fade" id="editProyectModal" tabindex="-1" role="dialog" aria-labelledby="editProyectModalLabel"
+    aria-hidden="true" style="color: black;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProyectModalLabel">Editar Proyecto Seleccionado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form #editForm="ngForm">
+                    <div class="form-group">
+                        <input type="hidden" ngModel="{{editProject?.id}}" name="id" class="form-control" id="id"
+                            placeholder="Email">
+
+                        <label for="titulo">Titulo :</label>
+                        <input type="text" ngModel="{{editProject?.titulo}}" name="titulo" class="form-control"
+                            id="titulo" placeholder="Titulo" required minlength="5" #titulo="ngModel">
+                        <div class="alert alert-danger" *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)">
+                            <div *ngIf="titulo.errors">
+                                El titulo es requerido debe ser mayor a 5 caracteres !
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="url">Link :</label>
+                        <input type="url" ngModel="{{editProject?.link}}" name="link" class="form-control" id="link"
+                            placeholder="link" required #link="ngModel" pattern={{reg}}>
+                        <div class="alert alert-danger" *ngIf="link.invalid && (link.dirty || link.touched)">
+                            <div *ngIf="link.errors">
+                                El link debe ser en formato : "http://www.google.com" y requerido!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="url">Imagen :</label>
+                        <input type="url" ngModel="{{editProject?.imagen}}" name="imagen" class="form-control"
+                            id="imagen" placeholder="imagen" required #imagen="ngModel" pattern={{reg}}>
+                        <div class="alert alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
+                            <div *ngIf="imagen.errors">
+                                El link debe ser en formato : "http://www.google.com" y requerido!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion :</label>
+                        <textarea type="text" ngModel="{{editProject?.descripcion}}" name="descripcion"
+                            class="form-control" id="descripcion" placeholder="Descripcion" required minlength="10"
+                            #descripcion="ngModel"></textarea>
+                        <div class="alert alert-danger"
+                            *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                            <div *ngIf="descripcion.errors">
+                                Descripcion es requerido debe ser mayor a 10 caracteres !
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                        <button [disabled]="editForm.invalid" (click)="onUpdateProyect(editForm.value)"
+                            data-dismiss="modal" class="btn btn-primary">Editar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

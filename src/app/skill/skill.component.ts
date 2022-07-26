@@ -15,8 +15,8 @@ export class SkillComponent implements OnInit {
   perfilData: Perfil = new Perfil();
   skills: Skill[] = [];
   skillEdit: Skill | undefined;
-  lista:string[]=["Bajo","Medio","Alto", "Experto"];
-  index:number;
+  lista: string[] = ["Bajo", "Medio", "Alto", "Experto"];
+  index: number;
   constructor(private perfilService: PerfilService) { }
 
   ngOnInit(): void {
@@ -46,11 +46,10 @@ export class SkillComponent implements OnInit {
   }
   onAddSkill(addForm: NgForm): void {
     document.getElementById('add-skill-form')?.click();
-    console.log(addForm.value);
     this.perfilData.skills.push(<Skill>addForm.value);
     this.perfilService.update(this.perfilData).subscribe(
       json => {
-        Swal.fire(`${json.competencia.habilidad}`, `${json.mensaje} `, 'success');
+        Swal.fire(`${<Skill>addForm.value.habilidad}`, `${json.mensaje} `, 'success');
         this.getData();
         addForm.reset();
       }
@@ -58,15 +57,14 @@ export class SkillComponent implements OnInit {
   }
   onUpdateSkill(skill: Skill): void {
     this.skillEdit = skill;
-    this.perfilData.skills.splice(this.perfilData.skills.findIndex(id=>id.id == skill.id),1,skill);
+    this.perfilData.skills.splice(this.perfilData.skills.findIndex(id => id.id == skill.id), 1, skill);
     this.perfilService.update(this.perfilData).subscribe(
       json => {
-        Swal.fire(`${json.competencia.habilidad}`, `${json.mensaje} `, 'success');
+        Swal.fire(`${skill.habilidad}`, `${json.mensaje} `, 'success');
         this.getData();
       }
     );
   }
-
 
   onDeleteSkill(data: Skill): void {
     Swal.fire({
@@ -85,7 +83,7 @@ export class SkillComponent implements OnInit {
         this.perfilService.update(this.perfilData).subscribe(
           {
             next: (response: void) => {
-              Swal.fire('Habilidad Eliminada', 'Habilidad eliminada con exito !!', 'success');
+              Swal.fire(`${data.habilidad} eliminado`, 'Habilidad eliminada con exito !!', 'success');
               this.getData();
             }
           }
