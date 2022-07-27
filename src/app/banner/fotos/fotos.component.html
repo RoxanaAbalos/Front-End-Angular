@@ -1,0 +1,25 @@
+<div *ngIf="modalService.modal" class="modal" id="addFoto" tabindex="-1" style="display:block;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{titulo}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cerrarModal()"></button>
+        </div>
+        <div class="modal-body">
+  
+          <div class="input-group">
+            <input (change)="seleccionarFoto($event)" type="file" class="form-control" id="inputGroupFile04"
+              aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+            <button (click)="subirFoto()" class="btn btn-outline-secondary" type="button"
+              id="inputGroupFileAddon04">Button</button>
+          </div>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cerrarModal()">Close</button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  

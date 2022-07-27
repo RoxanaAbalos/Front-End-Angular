@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { URL_BACKEND } from '../config/config';
 import { Perfil } from '../models/perfil';
-
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PerfilService {
   private urlEndPoint: string = URL_BACKEND + '/porfolio/perfil';
+
   public httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http:HttpClient) { 
 
@@ -50,5 +51,17 @@ export class PerfilService {
     );
   }
 
+  subirFoto(archivo: File, id): Observable<Perfil> {
+    let formData = new FormData();
 
+    formData.append("archivo", archivo);
+    formData.append("id", id);
+    return this.http.post(`${this.urlEndPoint}/upload`, formData).pipe(
+      map((response:any)=> response.perfil as Perfil), 
+      catchError(e => {
+        return throwError(e);
+      })
+    );
+
+  }
 }

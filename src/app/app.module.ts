@@ -11,6 +11,7 @@ import { WorkedComponent } from './worked/worked.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FotosComponent } from './banner/fotos/fotos.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     EducationComponent,
     ProjectComponent,
     SkillComponent,
-    WorkedComponent
+    WorkedComponent,
+    FotosComponent
   ],
   imports: [
     BrowserModule,
