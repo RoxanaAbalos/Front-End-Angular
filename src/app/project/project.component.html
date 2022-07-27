@@ -60,10 +60,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <div class="modal-body">
                 <form #addForm="ngForm" (ngSubmit)="onAddProyect(addForm) ">
-
                     <div class="form-group">
                         <label for="titulo">Titulo :</label>
                         <input type="text" ngModel name="titulo" class="form-control" id="titulo" placeholder="Titulo"
@@ -84,7 +82,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="imagen">Imagen :</label>
                         <input type="url" ngModel name="imagen" class="form-control" id="imagen" placeholder="imagen"
@@ -95,7 +92,16 @@
                             </div>
                         </div>
                     </div>
-          
+                    <div class="form-group">
+                        <label for="git">Repositorio Git :</label>
+                        <input type="url" ngModel name="git" class="form-control" id="git" placeholder="Github"
+                            required #git="ngModel" pattern={{reg}}>
+                        <div class="alert alert-danger" *ngIf="git.invalid && (git.dirty || git.touched)">
+                            <div *ngIf="git.errors">
+                                El link debe ser en formato : "http://www.google.com" y requerido!
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="descripcion">Descripcion :</label>
                         <textarea type="text" ngModel name="descripcion" class="form-control" id="descripcion"
@@ -131,9 +137,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <div class="modal-body">
-
                 <form #editForm="ngForm">
                     <div class="form-group">
                         <input type="hidden" ngModel="{{editProject?.id}}" name="id" class="form-control" id="id"
@@ -148,7 +152,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="url">Link :</label>
                         <input type="url" ngModel="{{editProject?.link}}" name="link" class="form-control" id="link"
@@ -159,7 +162,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="url">Imagen :</label>
                         <input type="url" ngModel="{{editProject?.imagen}}" name="imagen" class="form-control"
@@ -170,7 +172,16 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label for="url">Repositorio Git :</label>
+                        <input type="url" ngModel="{{editProject?.git}}" name="git" class="form-control"
+                            id="git" placeholder="Github" required #git="ngModel" pattern={{reg}}>
+                        <div class="alert alert-danger" *ngIf="git.invalid && (git.dirty || git.touched)">
+                            <div *ngIf="git.errors">
+                                El link debe ser en formato : "http://www.google.com" y requerido!
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="descripcion">Descripcion :</label>
                         <textarea type="text" ngModel="{{editProject?.descripcion}}" name="descripcion"
