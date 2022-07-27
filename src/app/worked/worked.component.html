@@ -1,11 +1,11 @@
 <section id="proyectos">
     <h1>Experiencia</h1>
-    <button  (click)="onOpenModal()" class="btn btn-light">Nuevo Trabajo</button>
-    <div class="cardProject" *ngFor="let data of perfilData.workeds">
+    <button  (click)="onOpenModal('add')" class="btn btn-success" style="width: 150px;">Nuevo Trabajo</button>
+    <div class="cardProject" *ngFor="let data of perfilData.workeds" id="main-container-experience">
         <div class="float-right btn-group btn-group-sm" style="color:black;">
-            <a (click)="onOpenModal()" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip"
+            <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip"
                 data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-            <a (click)="onDeleteSkill()" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip"
+            <a (click)="onDeleteExperience(data)" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip"
                 data-original-title="Delete"><i class="fa fa-times"></i></a>
         </div>
         <div class="img">
@@ -19,3 +19,186 @@
         </div>
     </div>
 </section>
+<!-- Add Proyect Modal -->
+<div class="modal fade" id="addExperienceModal" tabindex="-1" role="dialog" aria-labelledby="addExperienceModalLabel"
+    aria-hidden="true" style="color: black;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addExperienceModalLabel">Anadir Experiencia</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form #addForm="ngForm" (ngSubmit)="onAddProyect(addForm)">
+                    <div class="form-group">
+                        <label for="puesto">Puesto :</label>
+                        <input type="text" ngModel name="puesto" class="form-control" id="puesto" placeholder="Puesto"
+                            required minlength="5" #puesto="ngModel">
+                        <div class="alert alert-danger" *ngIf="puesto.invalid && (puesto.dirty || puesto.touched)">
+                            <div *ngIf="puesto.errors">
+                                El puesto es requerido debe ser mayor a 5 caracteres !
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="empleador">Empleador :</label>
+                        <input type="text" ngModel name="empleador" class="form-control" id="empleador"
+                            placeholder="Empleador" required minlength="5" #empleador="ngModel">
+                        <div class="alert alert-danger"
+                            *ngIf="empleador.invalid && (empleador.dirty || empleador.touched)">
+                            <div *ngIf="empleador.errors">
+                                El empleador es requerido debe ser mayor a 5 caracteres !
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="localidad">Localidad :</label>
+                        <input type="text" ngModel name="localidad" class="form-control" id="localidad"
+                            placeholder="Localidad" required minlength="5" #localidad="ngModel">
+                        <div class="alert alert-danger"
+                            *ngIf="localidad.invalid && (localidad.dirty || localidad.touched)">
+                            <div *ngIf="localidad.errors">
+                                Ciudad es requerido debe ser mayor a 5 caracteres !
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaInicio">Fecha de Inicio :</label>
+                        <input type="date" ngModel name="fechaInicio" class="form-control" id="fechaInicio">
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaFin">Fecha de Salida :</label>
+                        <input type="date" ngModel name="fechaFin" class="form-control" id="fechaFin">
+                    </div>
+                    <div class="form-group">
+                        <label for="imagen">Imagen :</label>
+                        <input type="url" ngModel name="imagen" class="form-control" id="imagen" placeholder="imagen"
+                            required #imagen="ngModel" pattern={{reg}}>
+                        <div class="alert alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
+                            <div *ngIf="imagen.errors">
+                                El link debe ser en formato : "http://www.google.com" y requerido!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion :</label>
+                        <textarea type="text" ngModel name="descripcion" class="form-control" id="descripcion"
+                            placeholder="Descripcion" required minlength="10" #descripcion="ngModel"></textarea>
+                        <div class="alert alert-danger"
+                            *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                            <div *ngIf="descripcion.errors">
+                                Descripcion es requerido debe ser mayor a 10 caracteres !
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="add-experience-form" class="btn btn-secondary"
+                            data-dismiss="modal">Cerrar</button>
+                        <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Edit Proyect Modal -->
+<div class="modal fade" id="editExperienceModal" tabindex="-1" role="dialog" aria-labelledby="editExperienceModalLabel"
+    aria-hidden="true" style="color: black;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editExperienceModalLabel">Editar Experiencia Seleccionada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form #editForm="ngForm">
+                    <div class="form-group">
+                        <input type="hidden" ngModel="{{workedEdit?.id}}" name="id" class="form-control" id="id"
+                            placeholder="Email">
+                        <label for="puesto">Puesto :</label>
+                        <input type="text" ngModel="{{workedEdit?.puesto}}" name="puesto" class="form-control"
+                            id="puesto" placeholder="Puesto" required minlength="5" #puesto="ngModel">
+                        <div class="alert alert-danger" *ngIf="puesto.invalid && (puesto.dirty || puesto.touched)">
+                            <div *ngIf="puesto.errors">
+                                El puesto es requerido debe ser mayor a 5 caracteres !
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="empleador">Empleador :</label>
+                        <input type="text" ngModel="{{workedEdit?.empleador}}" name="empleador" class="form-control"
+                            id="empleador" placeholder="Empleador" required minlength="5" #empleador="ngModel">
+                        <div class="alert alert-danger"
+                            *ngIf="empleador.invalid && (empleador.dirty || empleador.touched)">
+                            <div *ngIf="empleador.errors">
+                                El empleador es requerido debe ser mayor a 5 caracteres !
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="localidad">Localidad :</label>
+                        <input type="text" ngModel="{{workedEdit?.localidad}}" name="localidad" class="form-control"
+                            id="localidad" placeholder="Localidad" required minlength="5" #localidad="ngModel">
+                        <div class="alert alert-danger"
+                            *ngIf="localidad.invalid && (localidad.dirty || localidad.touched)">
+                            <div *ngIf="localidad.errors">
+                                Ciudad es requerido debe ser mayor a 5 caracteres !
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaInicio">Fecha de Inicio :</label>
+                        <input type="date" ngModel="{{workedEdit?.fechaInicio}}" name="fechaInicio"
+                            class="form-control" id="fechaInicio">
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaFin">Fecha de Salida :</label>
+                        <input type="date" ngModel="{{workedEdit?.fechaFin}}" name="fechaFin" class="form-control"
+                            id="fechaFin">
+                    </div>
+                    <div class="form-group">
+                        <label for="url">Imagen :</label>
+                        <input type="url" ngModel="{{workedEdit?.imagen}}" name="imagen" class="form-control"
+                            id="imagen" placeholder="imagen" required #imagen ="ngModel" pattern={{reg}}>
+                            <div class="alert alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
+                                <div *ngIf="imagen.errors">
+                                    El link debe ser en formato : "http://www.google.com" y requerido!
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion :</label>
+                        <textarea type="text" ngModel="{{workedEdit?.descripcion}}" name="descripcion"
+                            class="form-control" id="descripcion" placeholder="Descripcion" required minlength="10"
+                            #descripcion="ngModel"></textarea>
+                        <div class="alert alert-danger"
+                            *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                            <div *ngIf="descripcion.errors">
+                                Descripcion es requerido debe ser mayor a 10 caracteres !
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                        <button [disabled]="editForm.invalid" (click)="onUpdateProyect(editForm.value)"
+                            data-dismiss="modal" class="btn btn-primary">Editar Formacion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
