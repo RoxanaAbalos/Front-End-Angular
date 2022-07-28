@@ -97,6 +97,8 @@ export class EducationComponent implements OnInit {
     })
 
   }
-
+  esPar(numero) {
+    return (numero % 2) == 0;
+  }
 
 }

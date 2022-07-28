@@ -1,21 +1,48 @@
-<section id="proyectos">
-    <h1>Experiencia</h1>
-    <button *ngIf="authService.hasRole('ROLE_ADMIN')"  (click)="onOpenModal('add')" class="btn btn-success" style="width: 150px;">Nuevo Trabajo</button>
-    <div class="cardProject" *ngFor="let data of perfilData.workeds" id="main-container-experience">
-        <div *ngIf="authService.hasRole('ROLE_ADMIN')"  class="float-right btn-group btn-group-sm" style="color:black;">
-            <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip"
-                data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-            <a (click)="onDeleteExperience(data)" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip"
-                data-original-title="Delete"><i class="fa fa-times"></i></a>
-        </div>
-        <div class="img">
-            <img src="https://www.trecebits.com/wp-content/uploads/2017/07/empleo-trabajo.jpg" alt={{data.puesto}} width="100%">
-        </div>
-        <div class="descripcion">
-            <h2>{{data.puesto}} - {{data.empleador}}</h2>
-            <p>{{data.descripcion}}</p>
-            <p>{{data.localidad}}</p>
-            <p>Fecha: {{data.fechaInicio}} - {{data.fechaFin}}</p>
+<section id="experiencia" >
+    <div id="cartas">
+        <h1>Experiencia</h1>
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')" (click)="onOpenModal('add')" class="btn btn-success"
+            style="width: 150px;">Nuevo Trabajo</button>
+        <div *ngFor="let data of perfilData.workeds" id="main-container-experience">
+            <div *ngIf="esPar(data.id)" class="cardProject">
+                <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="float-right btn-group btn-group-sm"
+                    style="color:black;">
+                    <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
+                        data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                    <a (click)="onDeleteExperience(data)" class="btn btn-danger tooltips" data-placement="top"
+                        data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="img">
+                    <img src="https://www.trecebits.com/wp-content/uploads/2017/07/empleo-trabajo.jpg"
+                        alt={{data.puesto}} width="100%">
+                </div>
+                <div class="descripcion">
+                    <h2>{{data.puesto}} - {{data.empleador}}</h2>
+                    <p>{{data.descripcion}}</p>
+                    <p>{{data.localidad}}</p>
+                    <p>Fecha: {{data.fechaInicio}} - {{data.fechaFin}}</p>
+                </div>
+            </div>
+            <div *ngIf="!esPar(data.id)" class="cardProject">
+                <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="float-right btn-group btn-group-sm"
+                    style="color:black;">
+                    <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
+                        data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                    <a (click)="onDeleteExperience(data)" class="btn btn-danger tooltips" data-placement="top"
+                        data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                </div>
+
+                <div class="descripcion">
+                    <h2>{{data.puesto}} - {{data.empleador}}</h2>
+                    <p>{{data.descripcion}}</p>
+                    <p>{{data.localidad}}</p>
+                    <p>Fecha: {{data.fechaInicio}} - {{data.fechaFin}}</p>
+                </div>
+                <div class="img">
+                    <img src="https://www.trecebits.com/wp-content/uploads/2017/07/empleo-trabajo.jpg"
+                        alt={{data.puesto}} width="100%">
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -156,8 +183,8 @@
                     </div>
                     <div class="form-group">
                         <label for="fechaInicio">Fecha de Inicio :</label>
-                        <input type="date" ngModel="{{workedEdit?.fechaInicio}}" name="fechaInicio"
-                            class="form-control" id="fechaInicio">
+                        <input type="date" ngModel="{{workedEdit?.fechaInicio}}" name="fechaInicio" class="form-control"
+                            id="fechaInicio">
                     </div>
                     <div class="form-group">
                         <label for="fechaFin">Fecha de Salida :</label>
@@ -167,12 +194,12 @@
                     <div class="form-group">
                         <label for="url">Imagen :</label>
                         <input type="url" ngModel="{{workedEdit?.imagen}}" name="imagen" class="form-control"
-                            id="imagen" placeholder="imagen" required #imagen ="ngModel" pattern={{reg}}>
-                            <div class="alert alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
-                                <div *ngIf="imagen.errors">
-                                    El link debe ser en formato : "http://www.google.com" y requerido!
-                                </div>
+                            id="imagen" placeholder="imagen" required #imagen="ngModel" pattern={{reg}}>
+                        <div class="alert alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
+                            <div *ngIf="imagen.errors">
+                                El link debe ser en formato : "http://www.google.com" y requerido!
                             </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripcion :</label>

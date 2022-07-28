@@ -1,11 +1,10 @@
 <section id="skills">
   
     <div id="main-container-skill">
-
-        <div class="containerSkillsIt">
-            <h1>Skills IT</h1>
+        <h1 >Skills IT</h1>
             <button *ngIf="authService.hasRole('ROLE_ADMIN')"  (click)="onOpenModal('add')" class="btn btn-success" style="width: 150px;">Nueva
                 Habilidad</button>
+        <div class="containerSkillsIt">
             <div class="skillsIt">
                 <div *ngFor="let data of perfilData.skills">
                     <div *ngIf="authService.hasRole('ROLE_ADMIN')"  class="float-right btn-group btn-group-sm" style="color:black;">
@@ -14,11 +13,11 @@
                         <a (click)="onDeleteSkill(data)" class="btn btn-danger tooltips" data-placement="top"
                             data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
                     </div>
-                    <circle-progress [percent]="data.porciento" [radius]="70" [outerStrokeWidth]="6"
-                        [innerStrokeWidth]="2" [backgroundColor]="'#ff9c97'" [outerStrokeColor]="'#eee9e5'"
+                    <circle-progress [percent]="data.porciento" [radius]="90" [outerStrokeWidth]="6"
+                        [innerStrokeWidth]="2" [backgroundColor]="'#d1efec'" [outerStrokeColor]="'#ff9ef3'"
                         [innerStrokeColor]="'transparent'" [animation]="true" [animationDuration]="300"
-                        [title]="data.habilidad" [subtitle]="data.nivel" [titleColor]="'#02031a'"
-                        [subtitleColor]="'#02031a'"></circle-progress>
+                        [title]="data.habilidad" [subtitle]="data.nivel" [titleColor]="'#381000'"
+                        [subtitleColor]="'#381000'"></circle-progress>
                 </div>
 
             </div>

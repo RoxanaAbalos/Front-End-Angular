@@ -1,5 +1,5 @@
 /* Estilos generales */
-body, main, header, footer {
+body, main, header {
     font-family: 'Raleway', sans-serif;
     width: 100%;
 }
@@ -7,8 +7,16 @@ body, main, header, footer {
 /* Estilos nav */
 header {
     width: 100%;
-    background-color: #ffb5ff;
+    background-color: #ff9ef3;
 }
+#experiencia{
+    background-color: #d1efec;
+}
+
+#proyectos{
+    background-color: #d1efec;
+}
+
 nav {
     display: flex;
     width: 90%;
@@ -24,7 +32,7 @@ nav {
     height: 90vh;
     margin: 0 auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-around;
     align-items: center;
 }
@@ -32,8 +40,8 @@ nav {
     width: 30%;
 }
 .foto img {
-    width: 80%;
-    border-radius: 50%;
+    width: 70%;
+    border-radius: 100%;
     box-shadow: black;
 }
 .contenedorTextoBanner {
@@ -43,10 +51,11 @@ nav {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding: 2em;
+    padding: 3em;
+    color: #381000;
 }
 .tituloPrincipal h1 {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     font-size: 4em;
     font-weight: bold;
@@ -66,24 +75,23 @@ nav {
     justify-content: space-around;
     align-items: center;
 }
-.containerSkillsIt, .containerSkillsLive {
+#skills h1{
+    font-size: 3.5em;
+    font-weight: bold;
+    margin: 1em;
+    text-align: center;
+    color:#381000;
+}
+
+.containerSkillsIt {
     width: 100%;
     height: 50%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
 }
-.containerSkillsIt h1 {
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-}
-.containerSkillsLive h1 {
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-}
-.skillsIt, .skillsLive {
+
+.skillsIt {
     width: 90%;
     margin: 0 auto;
     display: flex;
@@ -91,9 +99,8 @@ nav {
     justify-content: space-around;
 }
 .cardSkill {
-    width: 150px;
-    height: 150px;
-    background-color: #bbbbbb;
+    width: 200px;
+    height: 200px;
     box-shadow: 5px 5px 5px black;
     display: flex;
     flex-direction: column;
@@ -105,106 +112,21 @@ nav {
     margin-top: 0.5em;
     font-size: 1.5em;
 }
-.cardSkillLive {
-    width: 100px;
-    height: 100px;
-    background-color: white;
-    border: 4px solid #bbbbbb;
-    box-shadow: 5px 5px 5px black;
-    display: flex;
-    flex-direction: column;
-    padding: 1em;
-    justify-content: flex-end;
-}
-.cardSkillLive p {
-    font-weight: bold;
-    margin-top: 0.5em;
-    font-size: 1em;
-}
-
-/* Estilo Formación */
-#formacion {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #c986d9;
-}
-.containerFormacion {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-#formacion h1 {
-    font-size: 2em;
-    font-weight: bold;
-}
-.cardFormacion {
-    width: 250px;
-    height: 210px;
-    background-color: white;
-    border: 4px solid #bbbbbb;
-    box-shadow: 5px 5px 5px black;
-    display: flex;
-    flex-direction: column;
-    padding: 1em;
-    justify-content: space-between;
-    align-items: center;
-}
-.cardFormacion p {
-    font-weight: bold;
-    margin-top: 0.5em;
-    font-size: 1em;
-} 
-.formacionDelante {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-.formacionDetras {
-    backface-visibility: hidden;
-}
-.cardFormacion:hover {
-    transform: rotateY(180deg);
-    transform-style: preserve-3d;
-    transition: all 0.7s linear;
-}
-.formacionDelante {
-    backface-visibility: hidden;
-}
-  
-.formacionDetras {
-    transform: rotateY(180deg);
-    visibility: visible;
-    position: fixed;
-    padding: 1em;
-    transition: 1s;
-}
-.formacionDetras .logro {
-    color: red;
-}
 
 
-/* Estilo Proyectos */
-#proyectos {
+#cartas {
     width: 100%;
     height: auto;
-    background-color: white;
     display: flex;
     flex-direction: column;
     padding-left: 2em;
 }
-#proyectos h1 {
-    font-size: 2em;
+#cartas h1 {
+    font-size: 3.5em;
     font-weight: bold;
     margin: 1em;
     text-align: center;
+    color:#381000
 }
 .cardProject {
     width: 80%;
@@ -215,7 +137,7 @@ nav {
     align-items: center;
 }
 .cardProject .img {
-    width: 50%;
+    width: 40%;
     margin-right: 2em;
 }
 .cardProject .img img:hover {
@@ -276,7 +198,7 @@ nav {
     align-items: center;
 }
 .cardProjectIzq .img {
-    width: 50%;
+    width: 40%;
     margin-left: 2em;
 }
 .cardProjectIzq .img img:hover {
@@ -334,3 +256,116 @@ nav {
 
 
 
+@media screen and (max-width: 992px) {
+    header {
+        height: 5em;
+        align-items: center;
+        padding-top: 0.5em;
+    }
+    .github {
+        margin: 1em 0;
+    }
+    .botones {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
+@media screen and (max-width: 768px) {
+    #banner {
+        height: auto;
+    }
+    .contenedorTextoBanner > div {
+        margin: 1em 0;
+    }
+    #about {
+        height: auto;
+    }
+    #skills {
+        height: auto;
+    }
+    .containerSkillsIt {
+        margin: 0.5em;
+        padding-bottom: 1em;
+    }
+    .cardSkill {
+        margin: 1em 0;
+    }
+    #formacion {
+        height: auto;
+        padding: 1em 0 1em 0;
+    }
+}
+@media screen and (max-width: 576px) {
+    header {
+        height: auto;
+    }
+    nav {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        margin: 1em 0;
+        padding-bottom: 1em;
+    }
+    nav .links {
+        width: 90%;
+        margin: 0 auto;
+    }
+    #banner {
+        flex-direction: column;
+    }
+    .foto {
+        width: 50%;
+    }
+    .tituloPrincipal h1 {
+        font-size: 3em;
+        font-weight: bold;
+    }
+    .bajada h2 {
+        font-size: 1.5em;
+        font-style: italic;
+    }
+    .vinculosBanner {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 1.5em;
+        padding: 0.5em;
+    }
+    .vinculosBanner li {
+        margin: 0.5em 0;
+    }
+    #about {
+        height: auto;
+    }
+    .sobreMi {
+        height: 100%;
+    }
+    .textoAbout {
+        height: auto;
+        padding-bottom: 1em;
+    }
+    .img {
+        width: 100%;
+    }
+    .cardProject {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    .cardProjectIzq {
+        flex-direction: column-reverse;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    .cardProjectIzq .img {
+        margin-left: 0;
+        width: 80%;    
+    }
+    .cardProject .img {
+        margin-left: 0;
+        width: 80%;
+    }
+   
+
+}

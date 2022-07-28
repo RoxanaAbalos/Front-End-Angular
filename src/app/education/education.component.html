@@ -1,29 +1,52 @@
-<section id="proyectos">
-    <div id="main-container-formation">
-        <h1>Formación</h1>
-        <button *ngIf="authService.hasRole('ROLE_ADMIN')"  (click)="onOpenModal('add')" class="btn btn-success">Nueva Educacion</button>
+<section id="educacion">
+    <div id="cartas">
+        <div id="main-container-formation">
+            <h1>Formación</h1>
+            <button *ngIf="authService.hasRole('ROLE_ADMIN')" (click)="onOpenModal('add')" class="btn btn-success">Nueva
+                Educacion</button>
 
-        <div *ngFor="let data of perfilData.educations" class="cardProject">
-            <div *ngIf="authService.hasRole('ROLE_ADMIN')"  class="float-right btn-group btn-group-sm" style="color:black;">
-                <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
-                    data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                <a (click)="onDeleteFormation(data)" class="btn btn-danger tooltips" data-placement="top"
-                    data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
-            </div>
-            <div class="img">
-                <img src={{data.imagen}} alt={{data.titulo}} width="100%">
-            </div>
-            <div class="descripcion">
-                <h2>{{data.titulo}}</h2>
-                <p>{{data.instituto}} </p>
-                <p>{{data.localidad}} ,Fecha :{{data.fechaInicio}} - {{data.fechaFin}} </p>
-                <p>{{data.descripcion}}</p>
+            <div *ngFor="let data of perfilData.educations">
+                <div *ngIf="esPar(data.id)" class="cardProject">
+                    <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="float-right btn-group btn-group-sm"
+                        style="color:black;">
+                        <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
+                            data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a (click)="onDeleteFormation(data)" class="btn btn-danger tooltips" data-placement="top"
+                            data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    </div>
+                    <div class="img">
+                        <img src={{data.imagen}} alt={{data.titulo}} width="100%">
+                    </div>
+                    <div class="descripcion">
+                        <h2>{{data.titulo}}</h2>
+                        <p>{{data.instituto}} </p>
+                        <p>{{data.localidad}} ,Fecha :{{data.fechaInicio}} - {{data.fechaFin}} </p>
+                        <p>{{data.descripcion}}</p>
+                    </div>
+                </div>
+                <div *ngIf="!esPar(data.id)" class="cardProjectIzq">
+                    <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="float-right btn-group btn-group-sm"
+                        style="color:black;">
+                        <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
+                            data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a (click)="onDeleteFormation(data)" class="btn btn-danger tooltips" data-placement="top"
+                            data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    </div>
+
+                    <div class="descripcion">
+                        <h2>{{data.titulo}}</h2>
+                        <p>{{data.instituto}} </p>
+                        <p>{{data.localidad}} ,Fecha :{{data.fechaInicio}} - {{data.fechaFin}} </p>
+                        <p>{{data.descripcion}}</p>
+                    </div>
+                    <div class="img">
+                        <img src={{data.imagen}} alt={{data.titulo}} width="100%">
+                    </div>
+                </div>
             </div>
 
         </div>
-
     </div>
-
 </section>
 <!-- Add Formacion Modal -->
 <div class="modal fade" id="addFormationModal" tabindex="-1" role="dialog" aria-labelledby="addFormationModalLabel"

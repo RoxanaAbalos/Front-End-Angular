@@ -1,9 +1,9 @@
 <section id="proyectos">
+    <div id="cartas">
     <h1>Proyectos</h1>
     <div>
         <button *ngIf="authService.hasRole('ROLE_ADMIN')"  (click)="onOpenModal('add')" class="btn btn-success">NuevoProyecto</button>
         <div *ngFor="let data of perfilData.projects" id="main-container-proyect">
-
             <div *ngIf="esPar(data.id)" class="cardProject">
                 <div *ngIf="authService.hasRole('ROLE_ADMIN')"  class="float-right btn-group btn-group-sm" style="color:black;">
                     <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
@@ -24,7 +24,6 @@
                     </div>
                 </div>
             </div>
-
             <div *ngIf="!esPar(data.id)" class="cardProjectIzq">
                 <div *ngIf="authService.hasRole('ROLE_ADMIN')"  class="float-right btn-group btn-group-sm" style="color:black;">
                     <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
@@ -47,6 +46,7 @@
             </div>
         </div>
     </div>
+</div>
 </section>
 
 <!-- Add Proyect Modal -->
