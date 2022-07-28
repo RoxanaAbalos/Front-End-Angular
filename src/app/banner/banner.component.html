@@ -1,19 +1,19 @@
 <section id="banner">
     
     <div class="foto">
-        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+        <div *ngIf="authService.hasRole('ROLE_ADMIN')"  class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
             <div  class="float-right btn-group btn-group-sm">
                 <a (click)="openModal(perfilData)" class="btn btn-warning tooltips" data-placement="top"
                     data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
             </div>
         </div>
-        <img *ngIf="perfilData?.foto" src="{{urlBackend}}/porfolio/uploads/img/{{perfilData.foto}}" alt="Foto">
+        <img  *ngIf="perfilData?.foto" src="{{urlBackend}}/porfolio/uploads/img/{{perfilData.foto}}" alt="Foto">
         <app-fotos [perfil]="perfilSelect"></app-fotos>
     </div>
     <div class="contenedorTextoBanner" id="main-container-perfil">
         
         <div class="tituloPrincipal">
-            <div class="float-right btn-group btn-group-sm" >
+            <div *ngIf="authService.hasRole('ROLE_ADMIN')"  class="float-right btn-group btn-group-sm" >
                 <a (click)="onOpenModal('edit',perfilData)" class="btn btn-warning tooltips" style="color:black;"
                     data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
             </div>

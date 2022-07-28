@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Perfil } from '../models/perfil';
 import { Project } from '../models/project';
+import { AuthService } from '../services/auth.service';
 import { PerfilService } from '../services/perfil.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ProjectComponent implements OnInit {
   projects: Project[] = [];
   editProject: Project | undefined;
 
-  constructor(private perfilService: PerfilService) { }
+  constructor(private perfilService: PerfilService,public authService:AuthService) { }
 
   ngOnInit(): void {
     this.getData();

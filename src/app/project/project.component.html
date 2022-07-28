@@ -1,11 +1,11 @@
 <section id="proyectos">
     <h1>Proyectos</h1>
     <div>
-        <button (click)="onOpenModal('add')" class="btn btn-success">NuevoProyecto</button>
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')"  (click)="onOpenModal('add')" class="btn btn-success">NuevoProyecto</button>
         <div *ngFor="let data of perfilData.projects" id="main-container-proyect">
 
             <div *ngIf="esPar(data.id)" class="cardProject">
-                <div class="float-right btn-group btn-group-sm" style="color:black;">
+                <div *ngIf="authService.hasRole('ROLE_ADMIN')"  class="float-right btn-group btn-group-sm" style="color:black;">
                     <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
                         data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
                     <a (click)="onDeleteProyect(data)" class="btn btn-danger tooltips" data-placement="top"
@@ -26,7 +26,7 @@
             </div>
 
             <div *ngIf="!esPar(data.id)" class="cardProjectIzq">
-                <div class="float-right btn-group btn-group-sm" style="color:black;">
+                <div *ngIf="authService.hasRole('ROLE_ADMIN')"  class="float-right btn-group btn-group-sm" style="color:black;">
                     <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
                         data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
                     <a (click)="onDeleteProyect(data)" class="btn btn-danger tooltips" data-placement="top"
@@ -94,8 +94,8 @@
                     </div>
                     <div class="form-group">
                         <label for="git">Repositorio Git :</label>
-                        <input type="url" ngModel name="git" class="form-control" id="git" placeholder="Github"
-                            required #git="ngModel" pattern={{reg}}>
+                        <input type="url" ngModel name="git" class="form-control" id="git" placeholder="Github" required
+                            #git="ngModel" pattern={{reg}}>
                         <div class="alert alert-danger" *ngIf="git.invalid && (git.dirty || git.touched)">
                             <div *ngIf="git.errors">
                                 El link debe ser en formato : "http://www.google.com" y requerido!
@@ -174,8 +174,8 @@
                     </div>
                     <div class="form-group">
                         <label for="url">Repositorio Git :</label>
-                        <input type="url" ngModel="{{editProject?.git}}" name="git" class="form-control"
-                            id="git" placeholder="Github" required #git="ngModel" pattern={{reg}}>
+                        <input type="url" ngModel="{{editProject?.git}}" name="git" class="form-control" id="git"
+                            placeholder="Github" required #git="ngModel" pattern={{reg}}>
                         <div class="alert alert-danger" *ngIf="git.invalid && (git.dirty || git.touched)">
                             <div *ngIf="git.errors">
                                 El link debe ser en formato : "http://www.google.com" y requerido!

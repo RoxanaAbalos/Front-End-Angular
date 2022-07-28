@@ -1,8 +1,8 @@
 <section id="proyectos">
     <h1>Experiencia</h1>
-    <button  (click)="onOpenModal('add')" class="btn btn-success" style="width: 150px;">Nuevo Trabajo</button>
+    <button *ngIf="authService.hasRole('ROLE_ADMIN')"  (click)="onOpenModal('add')" class="btn btn-success" style="width: 150px;">Nuevo Trabajo</button>
     <div class="cardProject" *ngFor="let data of perfilData.workeds" id="main-container-experience">
-        <div class="float-right btn-group btn-group-sm" style="color:black;">
+        <div *ngIf="authService.hasRole('ROLE_ADMIN')"  class="float-right btn-group btn-group-sm" style="color:black;">
             <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip"
                 data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
             <a (click)="onDeleteExperience(data)" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip"

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Education } from '../models/education';
 import { Perfil } from '../models/perfil';
+import { AuthService } from '../services/auth.service';
 import { PerfilService } from '../services/perfil.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class EducationComponent implements OnInit {
   reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
   formaciones: Education[] = [];
   editFormation: Education | undefined;
-  constructor(private perfilService: PerfilService) { }
+  constructor(private perfilService: PerfilService, public authService:AuthService) { }
 
   ngOnInit(): void {
     this.getData();

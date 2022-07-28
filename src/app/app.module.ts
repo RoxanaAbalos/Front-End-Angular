@@ -12,8 +12,11 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { FotosComponent } from './banner/fotos/fotos.component';
-
-
+import { LoginComponent } from './users/login.component';
+import { RouterModule, Routes } from '@angular/router';
+const routes: Routes = [
+  { path: 'login', component: LoginComponent }
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,12 +26,14 @@ import { FotosComponent } from './banner/fotos/fotos.component';
     ProjectComponent,
     SkillComponent,
     WorkedComponent,
-    FotosComponent
+    FotosComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    RouterModule.forRoot(routes),
     NgCircleProgressModule.forRoot({})
 
   ],

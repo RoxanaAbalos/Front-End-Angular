@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Perfil } from '../models/perfil';
 import { Skill } from '../models/skill';
+import { AuthService } from '../services/auth.service';
 import { PerfilService } from '../services/perfil.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class SkillComponent implements OnInit {
   skillEdit: Skill | undefined;
   lista: string[] = ["Bajo", "Medio", "Alto", "Experto"];
   index: number;
-  constructor(private perfilService: PerfilService) { }
+  constructor(private perfilService: PerfilService,public authService:AuthService) { }
 
   ngOnInit(): void {
     this.getData();

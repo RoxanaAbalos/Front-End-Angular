@@ -10,7 +10,6 @@ import { map } from 'rxjs';
 })
 export class PerfilService {
   private urlEndPoint: string = URL_BACKEND + '/porfolio/perfil';
-
   public httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http:HttpClient) { 
 

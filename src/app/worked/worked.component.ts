@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Perfil } from '../models/perfil';
 import { Worked } from '../models/worked';
+import { AuthService } from '../services/auth.service';
 import { PerfilService } from '../services/perfil.service';
 @Component({
   selector: 'app-worked',
@@ -13,7 +14,7 @@ export class WorkedComponent implements OnInit {
   perfilData: Perfil = new Perfil();
   reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
   workedEdit: Worked | undefined;
-  constructor(private perfilService: PerfilService) { }
+  constructor(private perfilService: PerfilService,public authService:AuthService) { }
 
   ngOnInit(): void {
     this.getData();

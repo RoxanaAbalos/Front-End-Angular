@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { URL_BACKEND } from '../config/config';
 import { Perfil } from '../models/perfil';
+import { AuthService } from '../services/auth.service';
 import { ModalService } from '../services/modal.service';
 import { PerfilService } from '../services/perfil.service';
 
@@ -16,7 +17,7 @@ export class BannerComponent implements OnInit {
   editPerfil: Perfil | undefined;
   perfilSelect: Perfil|undefined;
   urlBackend:string=URL_BACKEND;
-  constructor(private perfilService: PerfilService,private modalService:ModalService) { }
+  constructor(private perfilService: PerfilService,private modalService:ModalService, public authService:AuthService) { }
 
   ngOnInit(): void {
     this.getData();

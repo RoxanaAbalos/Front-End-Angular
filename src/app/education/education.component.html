@@ -1,10 +1,10 @@
 <section id="proyectos">
     <div id="main-container-formation">
         <h1>Formación</h1>
-        <button (click)="onOpenModal('add')" class="btn btn-success">Nueva Educacion</button>
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')"  (click)="onOpenModal('add')" class="btn btn-success">Nueva Educacion</button>
 
         <div *ngFor="let data of perfilData.educations" class="cardProject">
-            <div class="float-right btn-group btn-group-sm" style="color:black;">
+            <div *ngIf="authService.hasRole('ROLE_ADMIN')"  class="float-right btn-group btn-group-sm" style="color:black;">
                 <a (click)="onOpenModal('edit', data)" class="btn btn-warning tooltips" data-placement="top"
                     data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
                 <a (click)="onDeleteFormation(data)" class="btn btn-danger tooltips" data-placement="top"
@@ -160,12 +160,12 @@
                     <div class="form-group">
                         <label for="url">Imagen :</label>
                         <input type="url" ngModel="{{editFormation?.imagen}}" name="imagen" class="form-control"
-                            id="imagen" placeholder="imagen" required #imagen ="ngModel" pattern={{reg}}>
-                            <div class="alert alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
-                                <div *ngIf="imagen.errors">
-                                    El link debe ser en formato : "http://www.google.com" y requerido!
-                                </div>
+                            id="imagen" placeholder="imagen" required #imagen="ngModel" pattern={{reg}}>
+                        <div class="alert alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
+                            <div *ngIf="imagen.errors">
+                                El link debe ser en formato : "http://www.google.com" y requerido!
                             </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="fechaInicio">Fecha de Inicio :</label>
