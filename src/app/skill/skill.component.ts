@@ -13,11 +13,10 @@ import { PerfilService } from '../services/perfil.service';
   styleUrls: ['./skill.component.css']
 })
 export class SkillComponent implements OnInit {
-  perfilData: Perfil = new Perfil();
-  skills: Skill[] = [];
-  skillEdit: Skill | undefined;
-  lista: string[] = ["Bajo", "Medio", "Alto", "Experto"];
-  index: number;
+ public perfilData: Perfil = new Perfil();
+ public skills: Skill[] = [];
+ public skillEdit: Skill | undefined;
+  public lista: string[] = ["Bajo", "Medio", "Alto", "Experto"];
   constructor(private perfilService: PerfilService,public authService:AuthService) { }
 
   ngOnInit(): void {
@@ -30,7 +29,6 @@ export class SkillComponent implements OnInit {
   }
 
   public onOpenModal(mode: string, skill?: Skill): void {
-    console.log("He abierto un modal");
     const container = document.getElementById('main-container-skill');
     const button = document.createElement('button');
     button.type = 'button';

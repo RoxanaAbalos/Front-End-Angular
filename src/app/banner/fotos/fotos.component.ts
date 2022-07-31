@@ -11,15 +11,15 @@ import Swal from 'sweetalert2';
 })
 export class FotosComponent implements OnInit {
   @Input() perfil: Perfil;
-  perfilData : Perfil|undefined;
-  titulo: string = "Subir Foto"
-  private fotoSelecionada: File;
-  constructor(public perfilService: PerfilService ,public modalService:ModalService) { }
+  public perfilData: Perfil | undefined;
+  public titulo: string = "Subir Foto"
+  public fotoSelecionada: File;
+  constructor(public perfilService: PerfilService, public modalService: ModalService) { }
 
   ngOnInit(): void {
- 
+
   }
- 
+
   seleccionarFoto(event) {
     this.fotoSelecionada = event.target.files[0];
     if (this.fotoSelecionada.type.indexOf('image') < 0) {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { URL_BACKEND } from '../config/config';
 import { Perfil } from '../models/perfil';
@@ -13,17 +12,18 @@ import { PerfilService } from '../services/perfil.service';
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
-  perfilData: Perfil = new Perfil();
-  editPerfil: Perfil | undefined;
-  perfilSelect: Perfil|undefined;
-  urlBackend:string=URL_BACKEND;
-  constructor(private perfilService: PerfilService,private modalService:ModalService, public authService:AuthService) { }
+  public perfilData: Perfil = new Perfil();
+  public editPerfil: Perfil | undefined;
+  public perfilSelect: Perfil | undefined;
+  public urlBackend: string = URL_BACKEND;
+  public reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  constructor(private perfilService: PerfilService, public modalService: ModalService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.getData();
     this.modalService.notificarUpload.subscribe(
-      perfilData=> this.perfilData=perfilData
-   );
+      perfilData => this.perfilData = perfilData
+    );
   }
 
   getData() {
@@ -31,11 +31,10 @@ export class BannerComponent implements OnInit {
       perfilData => this.perfilData = perfilData
     );
   }
-  openModal(perfil:Perfil){
-    console.log(perfil);
+  openModal(perfil: Perfil) {
     this.perfilSelect = perfil;
     this.modalService.openModal();
- }
+  }
 
 
   public onOpenModal(mode: string, perfil?: Perfil): void {
@@ -59,10 +58,10 @@ export class BannerComponent implements OnInit {
     this.perfilData.email = perfil.email;
     this.perfilData.telefono = perfil.telefono;
     this.perfilData.acerca = perfil.acerca;
+    this.perfilData.foto=perfil.foto;
     this.perfilService.update(this.perfilData).subscribe(
       json => {
         Swal.fire(`Perfil :${json.perfil.apellido}`, `${json.mensaje} `, 'success');
-        console.log(json);
         this.getData();
       }
     );

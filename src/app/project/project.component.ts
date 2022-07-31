@@ -12,10 +12,10 @@ import { PerfilService } from '../services/perfil.service';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-  perfilData: Perfil = new Perfil();
-  reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
-  projects: Project[] = [];
-  editProject: Project | undefined;
+  public perfilData: Perfil = new Perfil();
+  public reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  public projects: Project[] = [];
+  public editProject: Project | undefined;
 
   constructor(private perfilService: PerfilService,public authService:AuthService) { }
 
@@ -62,7 +62,6 @@ export class ProjectComponent implements OnInit {
 
     this.perfilService.update(this.perfilData).subscribe(
       json => {
-        console.log(json);
         Swal.fire(`${project.titulo}`, `${json.mensaje} `, 'success');
         this.getData();
       }

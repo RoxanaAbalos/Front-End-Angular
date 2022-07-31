@@ -11,10 +11,10 @@ import { PerfilService } from '../services/perfil.service';
   styleUrls: ['./worked.component.css']
 })
 export class WorkedComponent implements OnInit {
-  perfilData: Perfil = new Perfil();
-  reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  public perfilData: Perfil = new Perfil();
+  public reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
   workedEdit: Worked | undefined;
-  constructor(private perfilService: PerfilService,public authService:AuthService) { }
+  constructor(private perfilService: PerfilService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.getData();
@@ -45,7 +45,6 @@ export class WorkedComponent implements OnInit {
     this.perfilData.workeds.push(<Worked>addForm.value);
     this.perfilService.update(this.perfilData).subscribe(
       json => {
-        console.log(json);
         Swal.fire(`${<Worked>addForm.value.puesto}`, `${json.mensaje} `, 'success');
         this.getData();
         addForm.reset();
@@ -58,7 +57,6 @@ export class WorkedComponent implements OnInit {
     this.perfilData.workeds.splice(this.perfilData.workeds.findIndex(id => id.id == worked.id), 1, worked);
     this.perfilService.update(this.perfilData).subscribe(
       json => {
-        console.log(json);
         Swal.fire(`${worked.puesto}`, `${json.mensaje} `, 'success');
         this.getData();
       }

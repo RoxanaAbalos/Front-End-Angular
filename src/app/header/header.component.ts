@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  usuario:Usuario;
+ public  usuario:Usuario;
   constructor(private router:Router, public authService:AuthService ) { 
     this.usuario = new Usuario();
   }
@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
   }
 
   login():void{
-    console.log(this.usuario);
     if (this.authService.isAuthenticated()) {
       Swal.fire('Login', `Hola ${this.authService.usuario.username} ya estás autenticado!`, 'info');
     }else{
@@ -30,7 +29,6 @@ export class HeaderComponent implements OnInit {
     }
     this.authService.login(this.usuario).subscribe(
       response=>{
-          console.log(response);
           this.authService.guardarUsuario(response.access_token);
           this.authService.guardarToken(response.access_token);
           let usuario = this.authService.usuario;

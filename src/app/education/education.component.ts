@@ -12,10 +12,10 @@ import { PerfilService } from '../services/perfil.service';
   styleUrls: ['./education.component.css']
 })
 export class EducationComponent implements OnInit {
-  perfilData: Perfil = new Perfil();
-  reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
-  formaciones: Education[] = [];
-  editFormation: Education | undefined;
+ public perfilData: Perfil = new Perfil();
+ public reg: string = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+ public formaciones: Education[] = [];
+ public editFormation: Education | undefined;
   constructor(private perfilService: PerfilService, public authService:AuthService) { }
 
   ngOnInit(): void {
@@ -52,7 +52,6 @@ export class EducationComponent implements OnInit {
     this.perfilData.educations.push(<Education>addForm.value)
     this.perfilService.update(this.perfilData).subscribe(
       json => {
-        console.log(json);
         Swal.fire(`${<Education>addForm.value.titulo}`, `${json.mensaje} `, 'success');
         this.getData();
         addForm.reset();
@@ -66,7 +65,6 @@ export class EducationComponent implements OnInit {
     this.perfilData.educations.splice(this.perfilData.skills.findIndex(id => id.id == education.id), 1, education);
     this.perfilService.update(this.perfilData).subscribe(
       json => {
-        console.log(json);
         Swal.fire(`${education.titulo}`, `${json.mensaje} `, 'success');
         this.getData();
       }

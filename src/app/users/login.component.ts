@@ -7,7 +7,7 @@ import { Usuario } from '../models/usuario';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  titulo: string = 'Por favor Loguearse!';
+  public titulo: string = 'Por favor Loguearse!';
   usuario:Usuario;
   constructor() { }
 
